@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,6 +27,47 @@ body {
   min-height: 100vh;
   box-sizing: border-box;
   height: 100vh;
+  overflow: hidden; /* Ẩn thanh cuộn */
+  position: relative;
+}
+.logo {
+    max-height: 40px;        /* Set max-height to 40px to limit the size */
+    width: auto;             /* Maintain aspect ratio */
+    transform: scale(3.6);   /* Scale up the logo visually by 1.5x */
+    transform-origin: left; /* Keep scaling centered */
+  }
+header .tabs {
+    display: flex;
+    gap: 10px;
+}
+
+header .tabs button {
+    background-color: inherit;
+    border: none;
+    color: #0e20a9;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+header .tabs button:hover {
+    background-color: #ffffff;
+}
+.tabs .login-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tabs .login-button:hover {
+    background-color: #0056b3;
 }
 
 /* Header Styling */
@@ -43,7 +85,7 @@ header {
   z-index: 1000;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-}
+} 
 
 header h2 {
   margin: 0;
@@ -52,14 +94,15 @@ header h2 {
 
 header nav {
   display: flex;
-  gap: 15px;
+  gap: 20px;
 }
 
 .header-btn {
   text-decoration: none;
   background-color: #f9f9f9;
   color: #12cdfc;
-  padding: 10px 15px;
+  font-size:15px;
+  padding: 20px 30px;
   border-radius: 5px;
   font-weight: bold;
   transition: background-color 0.3s, color 0.3s;
@@ -93,23 +136,27 @@ header nav {
 .members-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 20px; /* Khoảng cách giữa các cột */
+  padding: 0 20px; /* Khoảng cách từ lề trái và phải */
+  width: 100%; /* Tính toán để giữ khoảng cách */
+  box-sizing: border-box; /* Đảm bảo padding không tràn */
+  
 }
   
 .member-card {
-  background-color: #f9f9f9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  border-radius: 10px;
-  border: 4px solid #FFD700;
-  height: auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        border: 4px solid #FFD700;
+        height: 90%;
+        max-width: 210px; /* Giới hạn chiều rộng tối đa của từng card */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 .member-card img {
   width: 100px;
   height: 100px;
@@ -135,15 +182,155 @@ header nav {
   color: #007bff;
   font-weight: bold;
 }
+  /* Hiệu ứng bong bóng nổi */
+  .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .bubble:nth-child(2) { 
+            width: 30px; 
+            height: 30px; 
+            animation-duration: 6s;
+            left: 20%; 
+        }
+        .bubble:nth-child(3) { 
+            width: 15px; 
+            height: 15px; 
+            animation-duration: 10s;
+            left: 40%; 
+        }
+        .bubble:nth-child(4) { 
+            width: 25px; 
+            height: 25px; 
+            animation-duration: 12s;
+            left: 60%; 
+        }
+        .bubble:nth-child(5) { 
+            width: 35px; 
+            height: 35px; 
+            animation-duration: 7s;
+            left: 80%; 
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Hiệu ứng ánh sáng nhấp nháy */
+        .light {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            animation: blink 3s infinite ease-in-out;
+            mix-blend-mode: screen;
+        }
+
+        .light:nth-child(6) {
+            left: 10%;
+            top: 20%;
+            animation-delay: 0.5s;
+        }
+        .light:nth-child(7) {
+            left: 50%;
+            top: 50%;
+            animation-delay: 1s;
+        }
+        .light:nth-child(8) {
+            left: 70%;
+            top: 30%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Hiệu ứng khối động */
+        .box {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: move 10s infinite alternate;
+        }
+
+        .box:nth-child(9) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .box:nth-child(10) {
+            width: 150px;
+            height: 150px;
+            top: 40%;
+            left: 30%;
+            animation-delay: 2s;
+        }
+        .box:nth-child(11) {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            left: 60%;
+            animation-delay: 4s;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(50px, 50px) rotate(360deg);
+            }
+        }
 
     </style>
     <body>
         <!-- Header -->
         <header>
-            <h2>Group 19</h2>
+            <!-- <h2>Group 19</h2> -->
+            <div class="logo-container">
+              <img src="output-onlinepngtools-2.png" alt="Group 19 Logo" class="logo">
+            </div>
+            
+            <div class="tabs">
+              <button onclick="navigateTo('#home')">Home</button>
+              <button onclick="navigateTo('#about')">About</button>
+              <button onclick="navigateTo('#project')">Project</button>
+              <button onclick="navigateTo('#groupDiary')">Group Diary</button>
+              <button onclick="navigateTo('#project')">Style Guide</button>
+              <button onclick="navigateTo('#project')">Contact</button>
+
+          </div>
             <nav>
-                <a href="https://tl-1279.github.io/lab1.github.io/" class="header-btn">Log In</a>
-                <a href="group project 1/group-diary_DinhVanSon/index.html" class="header-btn">Group Diary</a>
+                <button class="header-btn" onclick="window.location.href='https://tl-1279.github.io/login/'">Login</button>        
+
             </nav>
         </header>
         <!-- About section -->
@@ -188,5 +375,51 @@ header nav {
                 <p>22130151@st.hcmuaf.edu.vn</p>
                 <a href="https://github.com/member5">Contact</a> <!--tự cho link github cá nhân vào-->
             </div>
+                 <!-- Bong bóng nổi -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <!-- Ánh sáng nhấp nháy -->
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+
+    <!-- Khối động -->
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    
+    </main>
+    <script>
+        // Số lượng bong bóng muốn tạo
+        const bubbleCount = 30;
+
+        // Thêm bong bóng vào body
+        for (let i = 0; i < bubbleCount; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+
+            // Kích thước ngẫu nhiên
+            const size = Math.random() * 30 + 10; // 10px đến 40px
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+
+            // Vị trí ngang ngẫu nhiên
+            bubble.style.left = `${Math.random() * 100}%`;
+
+            // Thời gian nổi ngẫu nhiên
+            bubble.style.animationDuration = `${Math.random() * 5 + 5}s`; // 5s đến 10s
+
+            // Thời gian bắt đầu ngẫu nhiên
+            bubble.style.animationDelay = `${Math.random() * 5}s`;
+
+            // Thêm bong bóng vào trang
+            document.body.appendChild(bubble);
+        }
+        </script>
     </body>
 </html>
